@@ -1,7 +1,10 @@
-# Task day 8
+# Task day 8 - react inroduction
 
-membuat aplikasi sederhana `todo`, dengan flow:
+membuat aplikasi sederhana , dengan flow:
 
-
-* bisa memyimpan daftar kegiatan dan di render dalam bentuk list
-* bisa update status `done` jika kegiatan selesai
+* berisikan `state`  yang akan di tampilkan di method `render`
+* gunakan `jsx` untuk menampilkan data
+* gunakan kondisi di `jsx` dengan menggunakan data yang dari `state`
+* untuk data `state` , bebas, bisa isi data **produk**, data `login` sebuah aplikasi yang penting ada unsur
+    * `object`
+    * `boolean`
