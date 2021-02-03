@@ -5,9 +5,9 @@ import {Counter, Reset, MutliCount} from './src/components';
 const App = () => {
   return (
     <View>
-      {/* <Counter /> */}
+      <Counter />
       {/* <Reset /> */}
-      <MutliCount />
+      {/* <MutliCount /> */}
     </View>
   );
 };
