@@ -1,4 +1,4 @@
-# Task day 16
+# Task day 13
 
 membuat aplikasi sederhana `todo`, dengan peraturan:
 
