@@ -6,4 +6,5 @@
     * component display dan list di pisah, 
     * setiap todo, ada btn untuk update status `done`
     * bisa di edit dan update tiap item todo
+* buat 1 halaman/screen untuk get data `Post` dari `Json Placeholder` dengan button untuk memanggil data dari server , dan harus login terlebih dahulu
 * gunakan `Rect Context` untuk manage state
