@@ -9,6 +9,10 @@ const Home = ({navigation}) => {
         title="to Display"
         onPress={() => navigation.navigate('Display')}
       />
+      <Button
+        title="Go to Cairns"
+        onPress={() => navigation.navigate('Weather', {cityId: 2172797})}
+      />
     </View>
   );
 };

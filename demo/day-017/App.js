@@ -9,6 +9,7 @@ import MasterAuth, {AuthProvider} from './src/context/Auth.context';
 import {
   DisplayScreen,
   FooterScreen,
+  WeatherScreen,
   HomeScreen,
   LoginScreen,
 } from './src/screens';
@@ -26,6 +27,7 @@ const App = () => {
           <>
             <Stack.Screen name="Home" component={HomeScreen} />
             <Stack.Screen name="Display" component={DisplayScreen} />
+            <Stack.Screen name="Weather" component={WeatherScreen} />
           </>
         ) : (
           <>
