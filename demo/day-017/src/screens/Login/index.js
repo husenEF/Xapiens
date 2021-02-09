@@ -10,9 +10,7 @@ const Login = () => {
       <Text>Login</Text>
       <Button
         title="Login"
-        onPress={() =>
-          logIn({name: 'Refactory', id: 1524, email: 'admin@refactory.id'})
-        }
+        onPress={() => logIn({username: 'johndoe', password: 'passjhon'})}
       />
     </View>
   );

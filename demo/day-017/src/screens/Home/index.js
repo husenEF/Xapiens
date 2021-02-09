@@ -10,8 +10,8 @@ const Home = ({navigation}) => {
         onPress={() => navigation.navigate('Display')}
       />
       <Button
-        title="Go to Cairns"
-        onPress={() => navigation.navigate('Weather', {cityId: 2172797})}
+        title="Go to Products"
+        onPress={() => navigation.navigate('Products')}
       />
     </View>
   );

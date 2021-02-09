@@ -12,6 +12,7 @@ import {
   WeatherScreen,
   HomeScreen,
   LoginScreen,
+  ProdutcsScreens,
 } from './src/screens';
 
 const Stack = createStackNavigator();
@@ -28,6 +29,7 @@ const App = () => {
             <Stack.Screen name="Home" component={HomeScreen} />
             <Stack.Screen name="Display" component={DisplayScreen} />
             <Stack.Screen name="Weather" component={WeatherScreen} />
+            <Stack.Screen name="Products" component={ProdutcsScreens} />
           </>
         ) : (
           <>
