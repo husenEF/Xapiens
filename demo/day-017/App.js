@@ -1,56 +1,49 @@
-import React, {createContext, useContext} from 'react';
+import React, {useContext} from 'react';
 import {Text, View} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
 
-//1 inisialisasi
-// const CounterContext = createContext();
+// import {CounterProvider} from './src/context/Counter.context';
+import MasterAuth, {AuthProvider} from './src/context/Auth.context';
 
-// const Display = () => {
-//   return (
-//     <CounterContext.Consumer>
-//       {(counterData) => {
-//         console.log({d: counterData});
-//         return (
-//           <View>
-//             <Text>Display Component</Text>
-//           </View>
-//         );
-//       }}
-//     </CounterContext.Consumer>
-//   );
-// };
+import {
+  DisplayScreen,
+  FooterScreen,
+  HomeScreen,
+  LoginScreen,
+} from './src/screens';
 
-// const Increment = () => {
-//   const {counter, title, inc} = useContext(CounterContext);
-//   // console.log();
-//   return (
-//     <View>
-//       <Text>Increment Component</Text>
-//       <Text>Data Counter: {counter}</Text>
-//     </View>
-//   );
-// };
-
-import {CounterProvider} from './src/context/Counter.context';
-
-import {DisplayScreen, FooterScreen} from './src/screens';
-
+const Stack = createStackNavigator();
 const App = () => {
-  const data = {
-    counter: 10,
-    title: 'Halo Dunia',
-    inc: () => {
-      console.log('inc function');
-    },
-  };
+  const GlobalAuth = useContext(MasterAuth);
+  const {isLogin} = GlobalAuth;
+
   return (
-    <CounterProvider>
-      <Text>Main App</Text>
-      {/* <Display />
-      <Increment /> */}
-      <DisplayScreen />
-      <FooterScreen />
-    </CounterProvider>
+    //auth context
+    <NavigationContainer>
+      <Stack.Navigator>
+        {isLogin ? (
+          <>
+            <Stack.Screen name="Home" component={HomeScreen} />
+            <Stack.Screen name="Display" component={DisplayScreen} />
+          </>
+        ) : (
+          <>
+            <Stack.Screen name="Login" component={LoginScreen} />
+          </>
+        )}
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
 
-export default App;
+// export default App;
+
+const MasterApp = () => {
+  return (
+    <AuthProvider>
+      <App />
+    </AuthProvider>
+  );
+};
+export default MasterApp;

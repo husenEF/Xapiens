@@ -1,6 +1,8 @@
 import React, {createContext, useContext} from 'react';
 import {Text, View} from 'react-native';
-import {CounterConsumer} from '../../context/Counter.context';
+import {CounterConsumer, CounterProvider} from '../../context/Counter.context';
+
+import {FooterScreen} from '../index';
 
 const Display = () => {
   return (
@@ -17,8 +19,13 @@ const Display = () => {
           );
         }}
       </CounterConsumer>
+      <FooterScreen />
     </View>
   );
 };
 
-export default Display;
+export default () => (
+  <CounterProvider>
+    <Display />
+  </CounterProvider>
+);

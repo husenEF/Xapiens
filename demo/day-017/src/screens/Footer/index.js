@@ -1,7 +1,7 @@
 import React, {useContext, useState} from 'react';
 import {Text, View, Button} from 'react-native';
 
-import MasterCounter from '../../context/Counter.context';
+import MasterCounter, {CounterProvider} from '../../context/Counter.context';
 
 const Footer = () => {
   const [title, setTitle] = useState('halo title');
