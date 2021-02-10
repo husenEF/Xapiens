@@ -1,33 +1,95 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, ActivityIndicator, FlatList, Button} from 'react-native';
 //1. import dan inisialisasi
-import {ApolloClient, InMemoryCache} from '@apollo/client';
-import {gql} from '@apollo/client';
-
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  gql,
+  useQuery,
+  useMutation,
+} from '@apollo/client';
 const client = new ApolloClient({
   uri: 'http://192.168.0.142:8070/v1/graphql',
   cache: new InMemoryCache(),
 });
 
-client
-  .query({
-    query: gql`
-      query MyQuery {
-        todo {
-          id
-          idUser
-          status
-        }
+const TODO_QUERY = gql`
+  query MyQuery {
+    todo {
+      id
+      idUser
+      status
+      title
+    }
+  }
+`;
+
+const ADD_TODO = gql`
+  mutation($title: String!, $status: Boolean, $userId: Int) {
+    insert_todo(objects: {idUser: $userId, status: $status, title: $title}) {
+      returning {
+        idUser
+        status
+        title
       }
-    `,
-  })
-  .then((result) => console.log(result));
-const App = () => {
+    }
+  }
+`;
+
+const Display = () => {
+  const query = useQuery(TODO_QUERY);
+  const [insertTodo, responseInsert] = useMutation(ADD_TODO);
+  // console.log({query});
+  const {data, loading, error} = query;
+  console.log({da: data});
+
+  const addTodo = () => {
+    insertTodo({
+      variables: {
+        title: 'Solat Duhur',
+        status: false,
+        userId: 1,
+      },
+    });
+  };
+
+  console.log({responseInsert});
   return (
     <View>
-      <Text>Main App</Text>
+      <Text>Display component</Text>
+      {loading && (
+        <View style={{padding: 10, alignContent: 'center'}}>
+          <ActivityIndicator color="red" />
+        </View>
+      )}
+      {!loading && (
+        <FlatList
+          data={data.todo}
+          renderItem={({item, index}) => {
+            console.log({item, index});
+            return <Text key={index}>{item.title}</Text>;
+          }}
+        />
+      )}
+      <Button onPress={addTodo} title="add" />
     </View>
   );
 };
 
-export default App;
+const App = () => {
+  return (
+    <View>
+      <Text>Main App</Text>
+      <Display />
+    </View>
+  );
+};
+
+const Main = (props) => (
+  <ApolloProvider client={client}>
+    <App {...props} />
+  </ApolloProvider>
+);
+
+export default Main;
