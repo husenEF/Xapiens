@@ -2,6 +2,7 @@ import {gql} from '@apollo/client';
 // import gql from 'graphql-tag';
 
 export default {};
+
 export const GET_USER = gql`
   query {
     todo {
