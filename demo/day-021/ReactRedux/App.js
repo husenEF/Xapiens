@@ -3,9 +3,9 @@ import {View, Text} from 'react-native';
 
 //1 import lib
 import {Provider} from 'react-redux';
-import {HomeScreen} from './src/screens';
+import MainApp from './src/screens';
 
-import store from './src/redux';
+import store from './src/features';
 // //2 initialization
 // //2.1;
 // const defaultState = {
@@ -75,7 +75,7 @@ const App = () => {
       <View>
         <Text>React Redux</Text>
       </View>
-      <HomeScreen />
+      <MainApp />
     </Provider>
   );
 };

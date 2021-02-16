@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {View, Text, Button, TextInput} from 'react-native';
 import {connect} from 'react-redux';
 
-import {resetName, updateName} from './action';
+import {resetName, updateName} from '../../features/global/actions';
 
 import {Header, Footer} from '../../component';
 
@@ -12,11 +12,11 @@ class HomeScreen extends Component {
   };
 
   componentDidMount() {
-    console.log({props: this.props});
+    // console.log({props: this.props});
   }
 
   componentDidUpdate(prevProps, prevState) {
-    console.log({didupdate: prevProps.name});
+    // console.log({didupdate: prevProps.name});
   }
 
   forceReset() {
@@ -66,9 +66,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
   resetName,
   updateName,
-  showAlert: () => {
-    console.log('show alert');
-  },
 };
 
 //5 . connect
