@@ -1,4 +1,6 @@
 import {createStore, applyMiddleware, combineReducers} from 'redux';
+import storage from '@react-native-async-storage/async-storage';
+import {persistReducer, persistStore} from 'redux-persist';
 
 import globalReducer from './global/reducer';
 import authReducer from './auth/reducer';
@@ -16,9 +18,27 @@ const rootReducer = combineReducers({
   //   user: userReducer,
 });
 
+const persistConfig = {
+  key: 'root',
+  storage,
+  blacklist: ['auth'],
+};
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 //2.3 initialize store
-const store = createStore(
-  rootReducer,
+export const store = createStore(
+  persistedReducer,
   applyMiddleware(logger, loginMiddleware),
 );
-export default store;
+export const persistor = persistStore(store);
+
+// export default {store, persistor};
+// export default () => {
+//   const store = createStore(
+//     persistedReducer,
+//     applyMiddleware(logger, loginMiddleware),
+//   );
+//   const persistor = persistStore(store);
+//   return {store, persistor};
+// };
+export default {};
