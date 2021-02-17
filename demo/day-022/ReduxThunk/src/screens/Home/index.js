@@ -1,17 +1,18 @@
 import React, {Component} from 'react';
 import {Text, View} from 'react-native';
 import {connect} from 'react-redux';
-import {fetchPost} from '../../fitures/posts';
+import {fetchPost} from '../../fitures/posts/action';
 
 class Home extends Component {
   componentDidMount() {
-    console.log({props: this.props});
     this.props.fetchPost();
   }
   render() {
+    const {listPost} = this.props;
     return (
       <View>
         <Text>Home screen</Text>
+        <Text>{JSON.stringify(listPost)}</Text>
       </View>
     );
   }
@@ -19,8 +20,9 @@ class Home extends Component {
 
 // export default  Home;
 const mapStateToProps = (state) => {
+  const {post} = state;
   return {
-    post: state.post,
+    listPost: post.list,
   };
 };
 
