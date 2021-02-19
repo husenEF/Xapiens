@@ -3,6 +3,9 @@ import {Text, View} from 'react-native';
 import {connect} from 'react-redux';
 import {fetchPost} from '../../fitures/posts/action';
 
+import {Header, Footer} from '@components';
+// import {Header, Footer} from '../../components';
+
 class Home extends Component {
   componentDidMount() {
     this.props.fetchPost();
@@ -11,8 +14,10 @@ class Home extends Component {
     const {listPost} = this.props;
     return (
       <View>
+        <Header />
         <Text>Home screen</Text>
-        <Text>{JSON.stringify(listPost)}</Text>
+        {/* <Text>{JSON.stringify(listPost)}</Text> */}
+        <Footer />
       </View>
     );
   }
