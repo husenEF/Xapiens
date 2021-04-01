@@ -10,7 +10,7 @@ import {Form, List} from './src/component';
 // });
 
 const DETAIL_USER = gql`
-  query MyQuery($id: Int!) {
+  query($id: Int!) {
     users(where: {id: {_eq: $id}}) {
       id
       name
