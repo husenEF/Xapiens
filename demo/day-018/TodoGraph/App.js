@@ -1,6 +1,6 @@
 import React from 'react';
 import {Text, View} from 'react-native';
-import {ApolloProvider} from '@apollo/client';
+import {ApolloProvider, gql, useQuery} from '@apollo/client';
 import client from './src/service';
 import {Form, List} from './src/component';
 
@@ -9,12 +9,24 @@ import {Form, List} from './src/component';
 //   cache: new InMemoryCache(),
 // });
 
+const DETAIL_USER = gql`
+  query MyQuery($id: Int!) {
+    users(where: {id: {_eq: $id}}) {
+      id
+      name
+    }
+  }
+`;
 const App = () => {
+  const {loading, data, error, refetch} = useQuery(DETAIL_USER, {
+    variables: {id: 12},
+  });
+  console.log({loading, data, error});
   return (
     <View style={{flex: 1, padding: 10}}>
       <Text>Todo Graph</Text>
-      <Form />
-      <List />
+      {/* <Form />
+      <List /> */}
     </View>
   );
 };

@@ -12,7 +12,7 @@ import {GET_USER} from '../../service/todo';
 
 const List = () => {
   const {loading, data, refetch} = useQuery(GET_USER);
-  console.log({loading, data});
+  // console.log({loading, data});
 
   return (
     <View style={{alignContent: 'center', flex: 1}}>
